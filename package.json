@@ -1,0 +1,16 @@
+{
+  "name": "ligabetplaydb",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node --watch --env-file=.env main.js "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.8.0"
+  }
+}
