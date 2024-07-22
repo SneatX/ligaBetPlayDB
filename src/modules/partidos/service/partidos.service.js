@@ -14,5 +14,12 @@ export async function registroPartido(idEquipoVisita, fecha, idEstadio){
 
     if(!estadio) return {resultado: "error", mensaje: "Estadio inexistente"}
 
+    //Buscar equipo local
+    let equipoLocal = await equiposCollection.getEquipoByEstadioId(idEstadio)
 
+    if(!equipoLocal) return {resultado: "error", mensaje: "Equipo local inexistente"}
+
+    if(equipoLocal._id.toString() === equipoVisitante._id.toString()){
+        return {resultado: "error", mensaje: "El equipo local y visitante son iguales"}
+    }
 }
