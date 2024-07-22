@@ -14,7 +14,7 @@ export class EstadiosRepository extends Connect {
     }
 
     async getAllEstadios() {
-        let res = await this.collection.find({}).toArray();
+        let res = await this.collection.find({}, { projection: { nombre: 1, _id: 0} }).toArray();
         return res;
     }
 

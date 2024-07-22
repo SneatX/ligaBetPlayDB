@@ -18,6 +18,21 @@ export class EquiposRepository extends Connect {
         return res;
     }
 
+    async aggregateEquipo(object) {
+        let res = await this.collection.insertOne(object)
+        return res
+    }
+
+    async deleteEquipo(filter) {
+        let res = await this.collection.deleteOne(filter);
+        return res;
+    }
+    
+    async updateEquipo(filter, update) {
+        let res = await this.collection.updateOne(filter, { $set: update });
+        return res;
+    }
+    
     async getEquipoById(id){
         let objectId = new ObjectId(id)
         let [res] = await this.collection.find({_id: objectId}).toArray()
