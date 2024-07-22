@@ -17,4 +17,9 @@ export class PartidosRepository extends Connect {
         return res;
     }
 
+    async aggregatePartido(object) {
+        let res = await this.collection.insertOne(object)
+        return res
+    }
+
 }

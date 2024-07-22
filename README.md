@@ -52,8 +52,7 @@ El sistema de gestión propuesto debe abordar las siguientes necesidades:
 - `id`: Identificador único del partido.
 - `equipoLocal`: Equipo que juega como local.
 - `equipoVisitante`: Equipo que juega como visitante.
-- `fecha`: Fecha del partido.
-- `hora`: Hora del partido.
+- `fecha`: Fecha y hora del partido.
 - `estadio`: Estadio donde se juega el partido.
 - `goles`: Lista de goles anotados en el partido.
 - `tarjetas`: Lista de tarjetas (amarillas y rojas) emitidas durante el partido.

@@ -24,7 +24,7 @@ export class Connect {
         this.setHost = h;
         this.setCluster = c;
         this.setDbName = d;
-        this.#open();
+        this.#open()
         this.db = this.conexion.db(this.getDbName);
     }
     set setPass(pass) {
