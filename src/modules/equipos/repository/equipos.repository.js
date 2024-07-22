@@ -24,4 +24,9 @@ export class EquiposRepository extends Connect {
         return res
     }
 
+    async getEquipoByEstadioId(id){
+        let objectId = new ObjectId(id)
+        let [res] = await this.collection.find({Estadio: objectId}).toArray()
+        return res
+    }
 }
