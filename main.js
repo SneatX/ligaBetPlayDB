@@ -1,3 +1,3 @@
-import { casoUso4 } from "./src/modules/partidos/controller/partidos.controller.js";
+import { casoUso3 } from "./src/modules/partidos/controller/partidos.controller.js";
 
-casoUso4()
+casoUso3()
