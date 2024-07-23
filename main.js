@@ -1,3 +1,2 @@
-import { casoUso3 } from "./src/modules/partidos/controller/partidos.controller.js";
-
-casoUso3()
+import { nuevoGol } from "./src/modules/goles/controller/goles.controller.js"
+console.log(await nuevoGol())
