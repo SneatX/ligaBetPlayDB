@@ -24,4 +24,15 @@ export class EstadiosRepository extends Connect {
         return res
     }
 
+    async insertFechaInEstadio(objectId, fecha){
+        let filter = {_id: objectId}
+        let accion = {
+            $push: {
+                Horarios: fecha
+            }
+        }
+        let res = await this.collection.updateOne(filter, accion)
+        return res
+    }
+
 }
