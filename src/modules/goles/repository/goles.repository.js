@@ -17,4 +17,9 @@ export class GolesRepository extends Connect {
         return res;
     }
 
+    async agregatteNewGol(object){
+        let res = await this.collection.insertOne(object);
+        return res
+    }
+
 }
