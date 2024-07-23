@@ -1,13 +1,14 @@
 import { ObjectId } from 'mongodb';
+import { JugadoresRepository } from "../repository/jugadores.repository.js"
 import { EquiposRepository } from "../../equipos/repository/equipos.repository.js";
 
 // Función para verificar si un equipo existe
 const verificarEquipo = async (nombre) => {
   const equiposRepo = new EquiposRepository();
   const equiposList = await equiposRepo.getAllEquipos();
-  const equiposNombres = new Set(estadiosList.map(estadio => estadio.nombre));
-
-  if (equiposNombres.has(nombre)) {
+  const equiposNombres = new Set(equiposList.map(equipo => equipo._id.toString()));
+  console.log(equiposNombres)
+  if (equiposNombres.has(nombre.toString())) {
     console.log(`El equipo ${nombre} existe.`);
     return true;
   } else {
@@ -19,40 +20,45 @@ const verificarEquipo = async (nombre) => {
 
 // Función principal para gestionar el equipo
 export const GestionJugador = async (accion, jugadorData) => {
-  const { _id, nombre, edad, posicion, nacionalidad, numeroCamiseta, equipo, lesiones, rendimientos } = jugadorData;
+  const { _id, campo, nombre, edad, posicion, nacionalidad, numeroCamiseta, equipo, lesiones, rendimientos } = jugadorData;
 
   // Repositorios
-  const equiposRepo = new EquiposRepository();
+  const jugadoresRepo = new JugadoresRepository();
 
   // Verificar si el equipo existe
-  const equipoExiste = await verificarEquipo(Equipo);
-  if (!equipoExiste) throw new Error('Equipo no existe');
+  console.log(equipo)
+  
 
   let res;
-
+  console.log(_id)
+  console.log(_id)  
   switch (accion) {
       case 'agregar':
           const nuevoJugador = {
-            nombre : "Agustin Rodriguez",
-            edad : "28",
-            posicion : "Delantero",
-            nacionalidad : "Uruguayo",
-            numeroCamiseta : "9",
+            nombre : nombre,
+            edad : edad,
+            posicion : posicion,
+            nacionalidad : nacionalidad,
+            numeroCamiseta : numeroCamiseta,
             equipo : new ObjectId('669ae0e3d2847f9a6eac5fff'),
             lesiones : [],
             rendimientos : [],
-          };
-          res = await equiposRepo.aggregateJugador(nuevoJugador);
-          break;
+        };
+        const equipoExiste = await verificarEquipo(nuevoJugador.equipo);
+        
+        if (!equipoExiste) throw new Error('Equipo no existe');
+        res = await jugadoresRepo.aggregateJugador(nuevoJugador);
+        break;
 
       case 'editar':
+          
           if (!_id || !campo) throw new Error('Falta información para editar el equipo');
-          res = await equiposRepo.updateJugador({ _id: new ObjectId(_id) }, campo);
+          res = await jugadoresRepo.updateJugador({ _id: new ObjectId(_id) }, {campo:"25"});
           break;
 
       case 'eliminar':
           if (!_id) throw new Error('Falta información para eliminar el equipo');
-          res = await equiposRepo.deleteJugador({ _id: new ObjectId(_id) });
+          res = await jugadoresRepo.deleteJugador({ _id: new ObjectId(_id) });
           break;
 
       default:
