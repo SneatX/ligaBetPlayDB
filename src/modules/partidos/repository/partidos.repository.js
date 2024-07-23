@@ -13,7 +13,7 @@ export class PartidosRepository extends Connect {
     }
 
     async getAllPartidos() {
-        let res = await this.collection.find({}).toArray();
+        let res = await this.collection.find({},{projection:{_id:1}}).toArray();
         return res;
     }
 
