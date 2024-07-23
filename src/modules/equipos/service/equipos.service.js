@@ -46,27 +46,54 @@ const verificarPartidos = (partidos, partidosList) => {
 };
 
 // Función principal para gestionar el equipo
-export const GestionEquipo = async (nombre, ciudad, Estadio, entrenador, Jugadores, Partidos) => {
+export const GestionEquipo = async (accion, equipoData) => {
+  const { _id, nombre, ciudad, Estadio, entrenador, Jugadores, Partidos, campo } = equipoData;
+
+  // Repositorios
+  const jugadoresRepo = new JugadoresRepository();
+  const partidosRepo = new PartidosRepository();
+  const estadiosRepo = new EstadiosRepository();
+
   // Verificar si el estadio existe
   const estadioExiste = await verificarEstadio(Estadio);
-  //if (!estadioExiste) return;
+  if (!estadioExiste) throw new Error('Estadio no existe');
 
   // Validar que los jugadores existan
-  const jugadoresRepo = new JugadoresRepository();
   const jugadoresList = await jugadoresRepo.getAllJugadores();
   verificarJugadores(Jugadores, jugadoresList);
 
   // Validar que los partidos existan
-  const partidosRepo = new PartidosRepository();
   const partidosList = await partidosRepo.getAllPartidos();
   verificarPartidos(Partidos, partidosList);
 
-  // Función para agregar equipo
-  // TODO: Implementar la lógica para agregar un equipo
+  let res;
 
-  // Función para editar equipo
-  // TODO: Implementar la lógica para editar un equipo
+  switch (accion) {
+      case 'agregar':
+          const nuevoEquipo = {
+              nombre: nombre,
+              ciudad: ciudad,
+              Estadio: new ObjectId(Estadio),
+              entrenador: entrenador,
+              Jugadores: [...Jugadores],
+              Partidos: [...Partidos]
+          };
+          res = await estadiosRepo.aggregateEquipo(nuevoEquipo);
+          break;
 
-  // Función para eliminar equipo
-  // TODO: Implementar la lógica para eliminar un equipo
+      case 'editar':
+          if (!_id || !campo) throw new Error('Falta información para editar el equipo');
+          res = await estadiosRepo.updateEquipo({ _id: new ObjectId(_id) }, campo);
+          break;
+
+      case 'eliminar':
+          if (!_id) throw new Error('Falta información para eliminar el equipo');
+          res = await estadiosRepo.deleteEquipo({ _id: new ObjectId(_id) });
+          break;
+
+      default:
+          throw new Error('Acción no válida');
+  }
+
+  return res;
 };
