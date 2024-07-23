@@ -17,4 +17,9 @@ export class TarjetasRepository extends Connect {
         return res;
     }
 
+    async agregatteNewTarjeta(object){
+        let res = await this.collection.insertOne(object);
+        return res
+    }
+
 }

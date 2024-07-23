@@ -1,2 +1,3 @@
-import { nuevoGol } from "./src/modules/goles/controller/goles.controller.js"
-console.log(await nuevoGol())
+import { nuevaTarjeta } from "./src/modules/tarjetas/controller/tarjetas.controller.js";
+
+console.log(await nuevaTarjeta())
