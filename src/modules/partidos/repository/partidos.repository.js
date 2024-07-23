@@ -1,4 +1,5 @@
 import { Connect } from "../../../config/db.js"; 
+import { ObjectId } from "mongodb";
 
 export class PartidosRepository extends Connect {
     static instance;
@@ -19,6 +20,12 @@ export class PartidosRepository extends Connect {
 
     async aggregatePartido(object) {
         let res = await this.collection.insertOne(object)
+        return res
+    }
+
+    async getPartidoById(id) {
+        let objectId = new ObjectId(id)
+        let [res] = await this.collection.find({_id: objectId}).toArray()
         return res
     }
 
