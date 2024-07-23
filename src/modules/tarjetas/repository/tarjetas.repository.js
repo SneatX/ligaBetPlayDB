@@ -1,4 +1,5 @@
 import { Connect } from "../../../config/db.js"; 
+import { ObjectId } from "mongodb";
 
 export class TarjetasRepository extends Connect {
     static instance;
@@ -15,6 +16,16 @@ export class TarjetasRepository extends Connect {
     async getAllTarjetas() {
         let res = await this.collection.find({}).toArray();
         return res;
+    }
+
+    async agregatteNewTarjeta(object){
+        let res = await this.collection.insertOne(object);
+        return res
+    }
+
+    async getTarjetasByPartidoId(idPartido){
+        let res = await this.collection.find({partido: new ObjectId(idPartido)}).toArray()
+        return res
     }
 
 }

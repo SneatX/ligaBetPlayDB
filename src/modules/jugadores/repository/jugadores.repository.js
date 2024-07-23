@@ -1,4 +1,5 @@
 import { Connect } from "../../../config/db.js"; 
+import { ObjectId } from "mongodb";
 
 export class JugadoresRepository extends Connect {
     static instance;
@@ -29,6 +30,12 @@ export class JugadoresRepository extends Connect {
     async updateJugador(filter, update) {
         let res = await this.collection.updateOne(filter, { $set: update });
         return res;
+    }
+
+    async getJugadorById(id){
+        let objectId = new ObjectId(id)
+        let [res] = await this.collection.find({_id: objectId}).toArray();
+        return res
     }
 
 }
