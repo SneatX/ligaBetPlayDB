@@ -10,7 +10,7 @@ export async function casoUso1(){
     const Jugadores = ["Millan", "Chaverra"]
     const Partidos = [new ObjectId('669eb9fdee5df68095c5ccb8'), new ObjectId('669eb9fdee5df68095c5ccba')]
     
-    let res = await GestionEquipo(nombre, ciudad, Estadio, entrenador, Jugadores, Partidos)
+    let res = await GestionEquipo("agregar", nombre, ciudad, Estadio, entrenador, Jugadores, Partidos)
     console.log(res)
 }
 /*
