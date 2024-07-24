@@ -18,52 +18,65 @@ const verificarEquipo = async (nombre) => {
 };
 
 
-// Función principal para gestionar el equipo
-export const GestionJugador = async (accion, jugadorData) => {
-  const { _id, campo, nombre, edad, posicion, nacionalidad, numeroCamiseta, equipo, lesiones, rendimientos } = jugadorData;
+export const GestionJugador = async (accion, jugadorData, campo="numeroCamiseta", valor=10) => {
+  const { _id, nombre, edad, posicion, nacionalidad, numeroCamiseta, equipo, lesiones, rendimientos } = jugadorData;
 
   // Repositorios
   const jugadoresRepo = new JugadoresRepository();
 
-  // Verificar si el equipo existe
-  console.log(equipo)
-  
-
   let res;
-  console.log(_id)
-  console.log(_id)  
+  //console.log(campo)
+  //console.log(valor)
+  //console.log(_id)
+  //console.log(accion)
   switch (accion) {
-      case 'agregar':
-          const nuevoJugador = {
-            nombre : nombre,
-            edad : edad,
-            posicion : posicion,
-            nacionalidad : nacionalidad,
-            numeroCamiseta : numeroCamiseta,
-            equipo : new ObjectId('669ae0e3d2847f9a6eac5fff'),
-            lesiones : [],
-            rendimientos : [],
-        };
-        const equipoExiste = await verificarEquipo(nuevoJugador.equipo);
-        
-        if (!equipoExiste) throw new Error('Equipo no existe');
-        res = await jugadoresRepo.aggregateJugador(nuevoJugador);
-        break;
+    case 'agregar':
+      // Verifica que todos los datos necesarios para agregar estén presentes
+      if (!nombre || !edad || !posicion || !nacionalidad || !numeroCamiseta || !equipo) {
+        throw new Error('Falta información para agregar el jugador');
+      }
 
-      case 'editar':
-          
-          if (!_id || !campo) throw new Error('Falta información para editar el equipo');
-          res = await jugadoresRepo.updateJugador({ _id: new ObjectId(_id) }, {campo:"25"});
-          break;
+      const nuevoJugador = {
+        nombre,
+        edad,
+        posicion,
+        nacionalidad,
+        numeroCamiseta,
+        equipo: new ObjectId(equipo),
+        lesiones: lesiones || [],
+        rendimientos: rendimientos || [],
+      };
 
-      case 'eliminar':
-          if (!_id) throw new Error('Falta información para eliminar el equipo');
-          res = await jugadoresRepo.deleteJugador({ _id: new ObjectId(_id) });
-          break;
+      const equipoExiste = await verificarEquipo(nuevoJugador.equipo);
+      if (!equipoExiste) throw new Error('Equipo no existe');
 
-      default:
-          throw new Error('Acción no válida');
+      res = await jugadoresRepo.aggregateJugador(nuevoJugador);
+      break;
+
+    case 'editar':
+      if (!_id || !campo || valor === undefined) {
+        throw new Error('Falta información para editar el jugador');
+      }
+
+      // Construye el objeto de actualización dinámicamente
+      let updateObj = {};
+      updateObj[campo] = valor;
+
+      res = await jugadoresRepo.updateJugador({ _id: new ObjectId(_id) }, updateObj);
+      break;
+
+    case 'eliminar':
+      if (!_id) {
+        throw new Error('Falta información para eliminar el jugador');
+      }
+
+      res = await jugadoresRepo.deleteJugador({ _id: new ObjectId(_id) });
+      break;
+
+    default:
+      throw new Error('Acción no válida');
   }
 
   return res;
 };
+
