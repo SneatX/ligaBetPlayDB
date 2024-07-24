@@ -13,16 +13,34 @@ export class ResultadosRepository extends Connect {
         return this;
     }
 
+     /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Resultados
+     */
+
     async getAllResultados() {
         let res = await this.collection.find({}).toArray();
         return res;
     }
+
+    /**
+     * 
+     * @param {String} idPartido Id del partido del cual se desea saber el resultado
+     * @returns Objeto con el documento o undefined
+     */
 
     async getResultadoByPartidoId(idPartido){
         let objectId = new ObjectId(idPartido)
         let [res] = await this.collection.find({partido: objectId}).toArray()
         return res
     }
+
+    /**
+     * 
+     * @param {Object} object Objeto con la informacion a agregar la Resultados
+     * @returns Objeto con la informacion de ingreso
+     */
 
     async aggregateNewResultado(object){
         let res = await this.collection.insertOne(object)

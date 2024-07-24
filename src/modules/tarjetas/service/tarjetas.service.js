@@ -3,6 +3,15 @@ import { JugadoresRepository } from "../../jugadores/repository/jugadores.reposi
 import { PartidosRepository } from "../../partidos/repository/partidos.repository.js"
 import { TarjetasRepository } from "../repository/tarjetas.repository.js"
 
+/**
+ * 
+ * @param {String} idJugador Id del ugador que realizo la falta
+ * @param {String} idPartido Id del partido donde se realizo la tarjeta
+ * @param {String} tipo Id tipo de tarjeta realizada
+ * @param {Int} minuto Minuto en el cual se realizo la falta
+ * @returns Un objeto con el id ingresado o mensaje de error
+ */
+
 export async function insertarNuevaTarjeta(idJugador, idPartido, tipo, minuto){
     let jugadoresCollection = new JugadoresRepository()
     let partidosCollection = new PartidosRepository()

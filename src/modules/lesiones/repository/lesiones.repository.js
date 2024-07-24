@@ -11,6 +11,11 @@ export class LesionesRepository extends Connect {
         LesionesRepository.instance = this;
         return this;
     }
+    /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Lesiones
+     */
 
     async getAllLesiones() {
         let res = await this.collection.find({}).toArray();

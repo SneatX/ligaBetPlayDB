@@ -4,6 +4,12 @@ import { PartidosRepository } from "../../partidos/repository/partidos.repositor
 import { ResultadosRepository } from "../repository/resultados.repository.js";
 import { ObjectId } from "mongodb";
 
+/**
+ * 
+ * @param {String} idPartido Id del partido donde se ingresaran los resultados
+ * @returns Un objeto con el id ingresado o mensaje de error
+ */
+
 export async function registroResultado(idPartido) {
     let golesCollection = new GolesRepository()
     let tarjetasCollection = new TarjetasRepository()

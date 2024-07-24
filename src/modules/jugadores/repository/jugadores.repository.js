@@ -13,10 +13,22 @@ export class JugadoresRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Jugadores
+     */
+
     async getAllJugadores() {
         let res = await this.collection.find({}).toArray();
         return res;
     }
+
+    /**
+     * 
+     * @param {String} id Id del jugador a buscar
+     * @returns Objeto con el documento o undefined
+     */
 
     async getJugadorById(id){
         let objectId = new ObjectId(id)

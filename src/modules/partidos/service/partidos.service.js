@@ -2,6 +2,15 @@ import { EquiposRepository } from "../../equipos/repository/equipos.repository.j
 import { EstadiosRepository } from "../../estadios/repository/estadios.repository.js";
 import { PartidosRepository } from "../repository/partidos.repository.js";
 import { ObjectId } from "mongodb";
+
+/**
+ * 
+ * @param {String} idEquipoVisita Id del equipo visitante del partido
+ * @param {String} fecha Fecha en la cual se realizo el partido
+ * @param {String} idEstadio Id del estadio donde se realizara o realizo el partido
+ * @returns 
+ */
+
 export async function registroPartido(idEquipoVisita, fecha, idEstadio) {
     let equiposCollection = new EquiposRepository()
     let estadiosCollection = new EstadiosRepository()
