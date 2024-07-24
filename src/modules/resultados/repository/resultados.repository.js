@@ -17,4 +17,9 @@ export class ResultadosRepository extends Connect {
         return res;
     }
 
+    async aggregateNewResultado(object){
+        let res = await this.collection.insertOne(object)
+        return res
+    }
+
 }
