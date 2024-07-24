@@ -32,6 +32,7 @@ export async function insertarNuevaTarjeta(idJugador, idPartido, tipo, minuto){
 
     let objeto = {
         jugador: new ObjectId(idJugador),
+        equipo : jugador.equipo,
         partido : new ObjectId(idPartido),
         tipo : tipo,
         minuto : minuto

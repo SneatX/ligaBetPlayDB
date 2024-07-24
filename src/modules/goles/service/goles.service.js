@@ -7,7 +7,6 @@ import { ObjectId } from "mongodb"
 
 export async function insertarNuevoGol(idJugador, minuto, idPartido){
     let jugadoresCollection = new JugadoresRepository()
-    let equiposCollection = new EquiposRepository()
     let partidosCollection = new PartidosRepository()
     let golesCollection = new GolesRepository()
 
