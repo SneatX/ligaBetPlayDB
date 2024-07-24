@@ -13,15 +13,32 @@ export class PartidosRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @returns Retorna un array con todos los elementos de la coleccion Partidos
+     */
+
     async getAllPartidos() {
         let res = await this.collection.find({},{projection:{_id:1}}).toArray();
         return res;
     }
 
+    /**
+     * 
+     * @param {ObjectId} object Objeto que se desea ingresar a Partidos
+     * @returns Objeto con informacion de ingreso
+     */
+
     async aggregatePartido(object) {
         let res = await this.collection.insertOne(object)
         return res
     }
+
+    /**
+     * 
+     * @param {String} id Id del partido a buscar
+     * @returns Objeto con el documento o undefined
+     */
 
     async getPartidoById(id) {
         let objectId = new ObjectId(id)

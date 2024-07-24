@@ -1,9 +1,16 @@
 import { JugadoresRepository } from "../../jugadores/repository/jugadores.repository.js"
-import { EquiposRepository } from "../../equipos/repository/equipos.repository.js"
 import { PartidosRepository } from "../../partidos/repository/partidos.repository.js"
 import { GolesRepository } from "../repository/goles.repository.js"
 
 import { ObjectId } from "mongodb"
+
+/**
+ * 
+ * @param {String} idJugador Id del jugador que marco el gol
+ * @param {Int} minuto Minuto en el cual marco el gol
+ * @param {String} idPartido Id del partido donde realizo el gol
+ * @returns Un objeto con el id ingresado o mensaje de error
+ */
 
 export async function insertarNuevoGol(idJugador, minuto, idPartido){
     let jugadoresCollection = new JugadoresRepository()

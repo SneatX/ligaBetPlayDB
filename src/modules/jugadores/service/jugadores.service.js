@@ -3,6 +3,13 @@ import { JugadoresRepository } from "../repository/jugadores.repository.js"
 import { EquiposRepository } from "../../equipos/repository/equipos.repository.js";
 
 // Función para verificar si un equipo existe
+
+/**
+     * 
+     * @param nombre String nombre del equipo de futbol
+     * @returns Retorna un valor tipo Booleano
+     */
+
 const verificarEquipo = async (nombre) => {
   const equiposRepo = new EquiposRepository();
   const equiposList = await equiposRepo.getAllEquipos();
@@ -17,7 +24,14 @@ const verificarEquipo = async (nombre) => {
   }
 };
 
-
+/**
+     * 
+     * @param accion String nombre del equipo de futbol
+     * @param jugadorData Array con informacion de jugador
+     * @param campo String con el campo a modificar
+     * @param valor String - Number del valor a establecer
+     * @returns Retorna un objeto
+     */
 export const GestionJugador = async (accion, jugadorData, campo="numeroCamiseta", valor=10) => {
   const { _id, nombre, edad, posicion, nacionalidad, numeroCamiseta, equipo, lesiones, rendimientos } = jugadorData;
 
