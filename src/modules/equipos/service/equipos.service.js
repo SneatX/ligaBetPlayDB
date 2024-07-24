@@ -5,6 +5,12 @@ import { JugadoresRepository} from "../../jugadores/repository/jugadores.reposit
 import { PartidosRepository } from "../../partidos/repository/partidos.repository.js"
 
 // Función para verificar si un estadio existe
+/**
+     * 
+     * @param {String} nombre nombre del estadio de futbol
+     * @returns Retorna un valor tipo Booleano
+     */
+
 const verificarEstadio = async (nombre) => {
   const estadiosRepo = new EstadiosRepository();
   const estadiosList = await estadiosRepo.getAllEstadios();
@@ -20,6 +26,11 @@ const verificarEstadio = async (nombre) => {
 };
 
 // Función para verificar si los jugadores existen
+/**
+     * 
+     * @param {String} nombre nombre del estadio de futbol
+     * @returns Retorna un valor tipo Booleano
+     */
 const verificarJugadores = (nombres, jugadoresList) => {
   const jugadoresNombres = new Set(jugadoresList.map(jugador => jugador.nombre));
 
@@ -33,6 +44,13 @@ const verificarJugadores = (nombres, jugadoresList) => {
 };
 
 // Función para verificar si los partidos existen
+/**
+     * 
+     * @param {Array} partidos con los partidos 
+     * @param {Array} partidosList con los partidos existentes en el documento
+     * @returns void Mensaje de informacion
+     */
+
 const verificarPartidos = (partidos, partidosList) => {
   const partidosSet = new Set(partidosList.map(partido => partido._id.toString()));
 
@@ -46,6 +64,13 @@ const verificarPartidos = (partidos, partidosList) => {
 };
 
 // Función principal para gestionar el equipo
+/**
+     * 
+     * @param {String} accion nombre del equipo de futbol
+     * @param {Array} equipoData con informacion de equipo
+     * @returns Retorna un objeto
+     */
+
 export const GestionEquipo = async (accion, equipoData) => {
   const { _id, nombre, ciudad, Estadio, entrenador, Jugadores, Partidos, campo } = equipoData;
 

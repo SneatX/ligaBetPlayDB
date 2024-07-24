@@ -12,6 +12,12 @@ export class ActividadesRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Actividades
+     */
+
     async getAllTarjetas() {
         let res = await this.collection.find({}).toArray();
         return res;

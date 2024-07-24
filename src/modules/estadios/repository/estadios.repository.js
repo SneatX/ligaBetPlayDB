@@ -13,16 +13,34 @@ export class EstadiosRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @returns Retorna un array con todos los elementos de la coleccion Estadios
+     */
+
     async getAllEstadios() {
         let res = await this.collection.find({}, { projection: { nombre: 1, _id: 0} }).toArray();
         return res;
     }
+
+    /**
+     * 
+     * @param {String} id Id del estadio a buscar 
+     * @returns Objeto con el documento o undefined
+     */
 
     async getEstadioById(id){
         let objectId = new ObjectId(id)
         let [res] = await this.collection.find({_id: objectId}).toArray()
         return res
     }
+
+    /**
+     * 
+     * @param {ObjectId} objectId ObjectId del documento a actualizar
+     * @param {Date} fecha Fecha a ingresar en el array de horario
+     * @returns 
+     */
 
     async insertFechaInEstadio(objectId, fecha){
         let filter = {_id: objectId}

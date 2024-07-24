@@ -12,6 +12,11 @@ export class RendimientosRepository extends Connect {
         return this;
     }
 
+     /**
+     * 
+     * @returns Retorna un array con todos los elementos de la coleccion Rendimientos
+     */
+
     async getAllRendimientos() {
         let res = await this.collection.find({}).toArray();
         return res;
