@@ -17,4 +17,19 @@ export class ArbitrosRepository extends Connect {
         return res;
     }
 
+    async aggregateArbitro(object) {
+        let res = await this.collection.insertOne(object)
+        return res
+    }
+
+    async deleteArbitro(filter) {
+        let res = await this.collection.deleteOne(filter);
+        return res;
+    }
+    
+    async updateArbitro(filter, update) {
+        let res = await this.collection.updateOne(filter, { $set: update });
+        return res;
+    }
+
 }
