@@ -1,4 +1,5 @@
 import { Connect } from "../../../config/db.js"; 
+import { ObjectId } from "mongodb";
 
 export class GolesRepository extends Connect {
     static instance;
@@ -19,6 +20,11 @@ export class GolesRepository extends Connect {
 
     async agregatteNewGol(object){
         let res = await this.collection.insertOne(object);
+        return res
+    }
+
+    async getGolesByPartidoId(idPartido){
+        let res = await this.collection.find({partido: new ObjectId(idPartido)}).toArray()
         return res
     }
 

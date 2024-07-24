@@ -1,3 +1,3 @@
-import { nuevaTarjeta } from "./src/modules/tarjetas/controller/tarjetas.controller.js";
+import { casoUso4 } from "./src/modules/resultados/controller/resultados.controller.js"
 
-console.log(await nuevaTarjeta())
+casoUso4()
