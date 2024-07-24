@@ -14,6 +14,10 @@ export async function registroResultado(idPartido) {
     let partido = await partidosCollection.getPartidoById(idPartido)
     if (!partido) return { resultado: "error", mensaje: "Partido inexistente" }
 
+    //Validar la no existencia de un resultado para el partido
+    let posibleResultado = await resultadosCollection.getResultadoByPartidoId(idPartido)
+    if(posibleResultado) return { resultado: "error", mensaje: "Resultado existente para el partido ingresado" }
+
     //Extraccion de data
     let goles = await golesCollection.getGolesByPartidoId(idPartido)
     let tarjetas = await tarjetasCollection.getTarjetasByPartidoId(idPartido)
