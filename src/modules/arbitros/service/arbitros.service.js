@@ -2,6 +2,13 @@ import { ObjectId } from 'mongodb';
 import { JugadoresRepository } from "../repository/jugadores.repository.js"
 import { EquiposRepository } from "../../equipos/repository/equipos.repository.js";
 
+
+/**
+     * 
+     * @param nombre String nombre del equipo de futbol
+     * @returns Retorna un valor tipo Booleano
+     */
+
 // Función para verificar si un equipo existe
 const verificarEquipo = async (nombre) => {
   const equiposRepo = new EquiposRepository();
@@ -18,7 +25,15 @@ const verificarEquipo = async (nombre) => {
 };
 
 
+
 // Función principal para gestionar el equipo
+
+/**
+     * 
+     * @param accion String nombre del equipo de futbol
+     * @param jugadorData Array con informacion de jugador
+     * @returns Retorna un objeto
+     */
 export const GestionJugador = async (accion, jugadorData) => {
   const { _id, campo, nombre, edad, posicion, nacionalidad, numeroCamiseta, equipo, lesiones, rendimientos } = jugadorData;
 

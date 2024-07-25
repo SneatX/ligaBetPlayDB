@@ -12,6 +12,12 @@ export class EstadiosRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Entradas
+     */
+    
     async getAllEstadios() {
         let res = await this.collection.find({}, { projection: { nombre: 1, _id: 0} }).toArray();
         return res;

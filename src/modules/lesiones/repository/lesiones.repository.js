@@ -12,6 +12,12 @@ export class LesionesRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Entradas
+     */
+
     async getAllLesiones() {
         let res = await this.collection.find({}).toArray();
         return res;

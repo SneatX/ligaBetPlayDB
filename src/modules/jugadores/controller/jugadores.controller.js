@@ -2,6 +2,12 @@ import { GestionJugador } from "../service/jugadores.service.js";
 import { ObjectId } from 'mongodb';
 
 
+/**
+     * 
+     * @param accion String especifica si quiere "editar", "eliminar" o "agregar"
+     * @returns Retorna un objeto con informacion de resultado de accion
+     */
+
 export async function casoUso2(accion) {
     const _id = new ObjectId('66a019c01f2114100f3c12cc');
     const nombre = "Agustin Rodriguez";

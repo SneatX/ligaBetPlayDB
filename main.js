@@ -8,7 +8,12 @@ const jugadores = new JugadoresRepository();
 console.log(await jugadores.getAllJugadores());
 */
 
-//casoUso1()
+/**
+ * 
+ * 
+ */
+
+casoUso1()
 
 /**
  * 
@@ -25,5 +30,5 @@ console.log(await jugadores.getAllJugadores());
  *  
  */
 
-casoUso2("eliminar")
+//casoUso2("eliminar")
 //casoUso8()

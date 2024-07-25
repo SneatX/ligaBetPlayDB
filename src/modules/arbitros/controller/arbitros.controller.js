@@ -1,6 +1,11 @@
 //import { GestionJugador } from "../service/jugadores.service.js";
 import { ObjectId } from 'mongodb';
 
+    /**
+     * 
+     * @param accion String especifica si quiere "editar", "eliminar" o "agregar"
+     * @returns Retorna un array con todos los elementos de la coleccion Entradas
+     */
 
 
 export async function casoUso8(accion) {
@@ -30,6 +35,14 @@ export async function casoUso8(accion) {
     };
     
     console.log(`campo: ${campo}, valor: ${valor}`);
+
+    /**
+     * 
+     * @param accion String especifica si quiere "editar", "eliminar" o "agregar", jugadorData Objeto con informacion, 
+     * @param campo String que se quiere actualizar
+     * @param valor String asoaciado al campo sujeto a edicion
+     * @returns Retorna un objeto de acuerdo a la accion selecionada
+     */
     
     let res = await GestionJugador(accion, jugadorData, campo, valor);
     console.log(res);

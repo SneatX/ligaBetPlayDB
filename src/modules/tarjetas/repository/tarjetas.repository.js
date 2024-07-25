@@ -12,6 +12,12 @@ export class TarjetasRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Entradas
+     */
+
     async getAllTarjetas() {
         let res = await this.collection.find({}).toArray();
         return res;

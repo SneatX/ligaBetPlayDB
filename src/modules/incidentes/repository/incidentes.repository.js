@@ -12,6 +12,12 @@ export class IncidentesRepository extends Connect {
         return this;
     }
 
+    /**
+     * 
+     * @param 
+     * @returns Retorna un array con todos los elementos de la coleccion Entradas
+     */
+
     async getAllIncidentes() {
         let res = await this.collection.find({}).toArray();
         return res;
